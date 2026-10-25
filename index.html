@@ -1,1 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Дизайнер и визуализатор — Лабораторная №3</title>
+  <meta name="description" content="Лабораторная работа №3: вёрстка на Flexbox и CSS Grid. Тема «Дизайнер и визуализатор» — стили в дизайне и палитры недели.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#top" data-testid="logo-link">Дизайн<span class="logo-accent">/</span>Визуал</a>
+      <nav class="main-nav" aria-label="Основная навигация" data-testid="main-nav">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#styles" data-testid="nav-link-styles">Стили</a></li>
+          <li><a class="nav-link" href="#palettes" data-testid="nav-link-palettes">Палитры</a></li>
+          <li><a class="nav-link" href="#about" data-testid="nav-link-about">О задании</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <section class="hero container">
+      <p class="eyebrow">Лабораторная работа №3 · Flexbox и Grid</p>
+      <h1>Дизайнер и визуализатор</h1>
+      <p class="lead">
+        Одномерные раскладки собраны на Flexbox, двумерная галерея — на CSS Grid.
+        Страница адаптивна: на мобильном всё выстраивается в одну колонку
+        без горизонтальной прокрутки.
+      </p>
+    </section>
+
+    <section id="styles" class="section container" aria-labelledby="styles-title">
+      <div class="section-head">
+        <h2 id="styles-title">Стили в дизайне</h2>
+        <p>Три характерных направления, которые визуализатор встречает каждый день.</p>
+      </div>
+
+      <div class="cards" data-testid="styles-cards">
+        <article class="card" data-testid="card-minimalism">
+          <div class="card-preview pv-minimal" aria-hidden="true">
+            <span class="pv-bar"></span>
+            <span class="pv-bar pv-bar--short"></span>
+            <span class="pv-dot"></span>
+          </div>
+          <h3>Минимализм</h3>
+          <p>
+            Чистые формы, много воздуха и ограниченная палитра.
+            Акцент — на типографике, сетке и точечных цветовых пятнах.
+          </p>
+        </article>
+
+        <article class="card" data-testid="card-brutalism">
+          <div class="card-preview pv-brutal" aria-hidden="true">
+            <span class="pv-block"></span>
+            <span class="pv-line"></span>
+            <span class="pv-line pv-line--short"></span>
+          </div>
+          <h3>Брутализм</h3>
+          <p>
+            Нарочитая грубость: контрастная типографика, видимые границы,
+            отказ от «полировки» и декоративных теней.
+          </p>
+        </article>
+
+        <article class="card" data-testid="card-neumorphism">
+          <div class="card-preview pv-neumorph" aria-hidden="true">
+            <span class="pv-chip"></span>
+            <span class="pv-chip pv-chip--inset"></span>
+          </div>
+          <h3>Неоморфизм</h3>
+          <p>
+            Мягкие тени и объём: элементы будто выдавлены из фона.
+            Требует аккуратной работы с контрастом и доступностью.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="palettes" class="section container" aria-labelledby="palettes-title">
+      <div class="section-head">
+        <h2 id="palettes-title">Палитры недели</h2>
+        <p>Четыре рабочие гаммы. Значения цветов заданы CSS-переменными и подписаны прямо в блоках.</p>
+      </div>
+
+      <div class="palettes" data-testid="palettes-grid">
+
+        <figure class="palette" data-testid="palette-nord"
+                style="--c1:#2E3440; --c2:#4C566A; --c3:#81A1C1; --c4:#88C0D0;">
+          <div class="swatches">
+            <div class="swatch" style="--sw:var(--c1); --swc:#FFFFFF;"><span>#2E3440</span></div>
+            <div class="swatch" style="--sw:var(--c2); --swc:#FFFFFF;"><span>#4C566A</span></div>
+            <div class="swatch" style="--sw:var(--c3); --swc:#1E2230;"><span>#81A1C1</span></div>
+            <div class="swatch" style="--sw:var(--c4); --swc:#1E2230;"><span>#88C0D0</span></div>
+          </div>
+          <figcaption class="palette-caption">
+            <strong>«Нордическая ночь»</strong>
+            <span>холодная, сдержанная гамма севера</span>
+          </figcaption>
+        </figure>
+
+        <figure class="palette" data-testid="palette-terracotta"
+                style="--c1:#7F5539; --c2:#9C6644; --c3:#DDB892; --c4:#EDE0D4;">
+          <div class="swatches">
+            <div class="swatch" style="--sw:var(--c1); --swc:#FFFFFF;"><span>#7F5539</span></div>
+            <div class="swatch" style="--sw:var(--c2); --swc:#FFFFFF;"><span>#9C6644</span></div>
+            <div class="swatch" style="--sw:var(--c3); --swc:#1E2230;"><span>#DDB892</span></div>
+            <div class="swatch" style="--sw:var(--c4); --swc:#1E2230;"><span>#EDE0D4</span></div>
+          </div>
+          <figcaption class="palette-caption">
+            <strong>«Терракота»</strong>
+            <span>тёплая землистая гамма глины и песка</span>
+          </figcaption>
+        </figure>
+
+        <figure class="palette" data-testid="palette-forest"
+                style="--c1:#1B4332; --c2:#2D6A4F; --c3:#74C69D; --c4:#D8F3DC;">
+          <div class="swatches">
+            <div class="swatch" style="--sw:var(--c1); --swc:#FFFFFF;"><span>#1B4332</span></div>
+            <div class="swatch" style="--sw:var(--c2); --swc:#FFFFFF;"><span>#2D6A4F</span></div>
+            <div class="swatch" style="--sw:var(--c3); --swc:#1E2230;"><span>#74C69D</span></div>
+            <div class="swatch" style="--sw:var(--c4); --swc:#1E2230;"><span>#D8F3DC</span></div>
+          </div>
+          <figcaption class="palette-caption">
+            <strong>«Хвойный лес»</strong>
+            <span>глубокая зелень от ели до молодой листвы</span>
+          </figcaption>
+        </figure>
+
+        <figure class="palette" data-testid="palette-sunset"
+                style="--c1:#6A040F; --c2:#9D0208; --c3:#F48C06; --c4:#FFBA08;">
+          <div class="swatches">
+            <div class="swatch" style="--sw:var(--c1); --swc:#FFFFFF;"><span>#6A040F</span></div>
+            <div class="swatch" style="--sw:var(--c2); --swc:#FFFFFF;"><span>#9D0208</span></div>
+            <div class="swatch" style="--sw:var(--c3); --swc:#1E2230;"><span>#F48C06</span></div>
+            <div class="swatch" style="--sw:var(--c4); --swc:#1E2230;"><span>#FFBA08</span></div>
+          </div>
+          <figcaption class="palette-caption">
+            <strong>«Янтарный закат»</strong>
+            <span>огненный градиент от бургунди к янтарю</span>
+          </figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="about" class="site-footer">
+    <div class="container footer-inner">
+      <p data-testid="footer-text">
+        Вариант 14 · «Дизайнер и визуализатор» · Лабораторная №3: Flexbox для меню и карточек,
+        CSS Grid для галереи палитр, медиа-запросы для планшета и мобильного.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
