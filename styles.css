@@ -1,0 +1,303 @@
+/* ============================================
+   Лабораторная №3 · Вариант 14
+   «Дизайнер и визуализатор»
+   Flexbox: меню + карточки · Grid: палитры
+   ============================================ */
+
+/* ---- Дизайн-токены (CSS-переменные) ---- */
+:root {
+  --ink: #1E2230;          /* основной текст */
+  --ink-soft: #454B58;     /* вторичный текст (контраст на --bg: 8.5:1) */
+  --bg: #F6F2EC;           /* фон страницы */
+  --paper: #FFFFFF;        /* фон карточек */
+  --accent: #A03E1F;       /* акцент (контраст на --bg: 5.9:1) */
+  --line: #E3DCD0;         /* декоративные границы */
+  --gap: 24px;
+  --radius: 18px;
+  --font-head: 'Unbounded', 'Arial', sans-serif;
+  --font-body: 'Manrope', 'Arial', sans-serif;
+}
+
+/* ---- База ---- */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden; /* защита от горизонтальной прокрутки */
+}
+
+.container {
+  width: min(1120px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+::selection { background: var(--accent); color: #FFFFFF; }
+
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+h1, h2, h3 { font-family: var(--font-head); line-height: 1.2; margin: 0; }
+
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.25rem, 2.5vw, 1.6rem); }
+h3 { font-size: 1.05rem; }
+
+p { margin: 0; }
+
+/* ---- Шапка: горизонтальное меню на Flexbox ---- */
+.site-header {
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  flex-wrap: wrap;
+  padding-block: 14px;
+}
+
+.logo {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.logo-accent { color: var(--accent); }
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 999px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.nav-link:hover {
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-2px);
+}
+
+/* ---- Hero ---- */
+.hero { padding-block: clamp(48px, 9vw, 104px) clamp(24px, 4vw, 40px); }
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.lead {
+  max-width: 620px;
+  margin-top: 18px;
+  color: var(--ink-soft);
+}
+
+/* ---- Секции ---- */
+.section { padding-block: clamp(32px, 6vw, 64px); }
+
+.section-head { margin-bottom: 28px; max-width: 640px; }
+
+.section-head p { margin-top: 10px; color: var(--ink-soft); }
+
+/* ---- Flexbox: карточки «Стили в дизайне» (1 / 2 / 3 в ряд) ---- */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+}
+
+.card {
+  flex: 1 1 calc(33.333% - var(--gap)); /* 3 в ряд на десктопе */
+  min-width: 230px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(30, 34, 48, 0.12);
+}
+
+.card p { color: var(--ink-soft); font-size: 0.95rem; }
+
+/* Превью карточек — рисованы чистым CSS */
+.card-preview {
+  height: 150px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Минимализм */
+.pv-minimal { background: var(--paper); border: 1px solid var(--line); }
+.pv-bar {
+  position: absolute; left: 18px; top: 28px;
+  width: 62%; height: 2px; background: var(--ink);
+}
+.pv-bar--short { top: 40px; width: 38%; }
+.pv-dot {
+  position: absolute; right: 20px; bottom: 20px;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--accent);
+}
+
+/* Брутализм */
+.pv-brutal { background: var(--paper); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+.pv-block {
+  position: absolute; left: 16px; top: 16px;
+  width: 52px; height: 52px;
+  background: var(--accent);
+  border: 3px solid var(--ink);
+}
+.pv-line {
+  position: absolute; left: 16px; bottom: 36px;
+  width: 68%; height: 9px; background: var(--ink);
+}
+.pv-line--short { bottom: 18px; width: 42%; }
+
+/* Неоморфизм */
+.pv-neumorph {
+  background: #E3E9F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.pv-chip {
+  width: 54px; height: 54px; border-radius: 16px;
+  background: #E3E9F0;
+  box-shadow: 8px 8px 16px #C3CCD6, -8px -8px 16px #FFFFFF;
+}
+.pv-chip--inset {
+  box-shadow: inset 6px 6px 12px #C3CCD6, inset -6px -6px 12px #FFFFFF;
+}
+
+/* ---- Grid: галерея «Палитры недели» (2×2) ---- */
+.palettes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap);
+}
+
+.palette {
+  margin: 0;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.palette:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(30, 34, 48, 0.10);
+}
+
+/* Цвета палитры заданы переменными --c1..--c4 на .palette,
+   каждый блок берёт свой цвет через --sw и подписан значением */
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.swatch {
+  min-height: 92px;
+  border-radius: 12px;
+  background: var(--sw);
+  color: var(--swc);
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 12px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.palette-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.palette-caption strong { font-family: var(--font-head); font-size: 0.95rem; }
+.palette-caption span { color: var(--ink-soft); font-size: 0.9rem; }
+
+/* ---- Подвал ---- */
+.site-footer {
+  margin-top: clamp(32px, 6vw, 64px);
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.footer-inner { padding-block: 28px; }
+.footer-inner p { color: var(--ink-soft); font-size: 0.9rem; max-width: 760px; }
+
+/* ============================================
+   Медиа-запросы
+   ============================================ */
+
+/* Планшет: карточки 2 в ряд, Grid остаётся в 2 колонки */
+@media (max-width: 900px) {
+  .card { flex: 1 1 calc(50% - var(--gap)); }
+}
+
+/* Мобильный: карточки и палитры в 1 колонку, шапка перестраивается */
+@media (max-width: 620px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .nav-list { width: 100%; }
+
+  .nav-link { padding: 9px 14px; font-size: 0.9rem; }
+
+  .card { flex: 1 1 100%; }
+
+  .palettes { grid-template-columns: 1fr; }
+
+  .swatch { min-height: 76px; }
+}
